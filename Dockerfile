@@ -30,6 +30,7 @@ COPY --from=builder /etc/localtime /etc/localtime
 
 WORKDIR /app
 COPY requirements.txt .
+RUN update-ca-trust
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . .

@@ -13,6 +13,8 @@ RUN echo "root:x:0:" > group && \
     echo "staff:x:50:" >> group && \
     echo "hotopic:x:1001:" >> group
 
+RUN mkdir -p /home/hotopic && chown 1001:1001 /home/hotopic
+
 # 设置时区环境变量
 ENV TZ=Asia/Shanghai
 # 创建时区软链接并写入时区名称
@@ -27,6 +29,7 @@ COPY --from=builder /tmp/passwd /etc/passwd
 COPY --from=builder /tmp/group /etc/group
 COPY --from=builder /usr/share/zoneinfo/${TZ} /usr/share/zoneinfo/${TZ}
 COPY --from=builder /etc/localtime /etc/localtime
+COPY --from=builder --chown=hotopic:hotopic /home/hotopic /home/hotopic
 
 WORKDIR /app
 COPY requirements.txt .

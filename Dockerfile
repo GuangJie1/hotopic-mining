@@ -11,7 +11,7 @@ RUN echo "root:x:0:" > group && \
     echo "nobody:x:65534:" >> group && \
     echo "tty:x:5:" >> group && \
     echo "staff:x:50:" >> group && \
-    echo "hotopic:x:GID:" >> group
+    echo "hotopic:x:1001:" >> group
 
 # 设置时区环境变量
 ENV TZ=Asia/Shanghai

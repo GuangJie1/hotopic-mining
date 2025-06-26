@@ -22,7 +22,7 @@ RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
 FROM openeuler/distroless-pip:23.3.1-oe2403lts
 
 ARG TZ=Asia/Shanghai
-COPY --from=build-env /app /app
+
 COPY --from=builder /tmp/passwd /etc/passwd
 COPY --from=builder /tmp/group /etc/group
 COPY --from=builder /usr/share/zoneinfo/${TZ} /usr/share/zoneinfo/${TZ}
